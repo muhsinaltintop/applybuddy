@@ -34,7 +34,7 @@ const fetchData = async (endpoint: string, options: FetchOptions = {}): Promise<
 
 interface User {
   id: number;
-  name: string;
+  username: string;
   email: string;
   // Diğer kullanıcı alanları...
 }
@@ -48,7 +48,7 @@ const getUsers = async (): Promise<User[]> => {
 };
 
 interface InquiryData {
-  name: string;
+  username: string;
   email: string;
   // Diğer sorgu alanları...
 }
