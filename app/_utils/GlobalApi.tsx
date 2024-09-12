@@ -6,7 +6,7 @@ interface FetchOptions extends RequestInit {
   headers?: Record<string, string>;
 }
 
-const fetchData = async (endpoint: string, options: FetchOptions = {}): Promise<any> => {
+const fetchData = async (endpoint: string, options: FetchOptions = {}): Promise<FetchOptions> => {
   const defaultOptions: FetchOptions = {
     cache: "no-store",
     headers: {
@@ -24,7 +24,9 @@ const fetchData = async (endpoint: string, options: FetchOptions = {}): Promise<
     if (!res.ok) {
       throw new Error(`Error: ${res.status} ${res.statusText}`);
     }
-    const data: any = await res.json();
+    const data: FetchOptions = await res.json();
+    console.log(typeof(data), data);
+    
     return data;
   } catch (error) {
     console.error("Fetch error:", error);
@@ -63,7 +65,7 @@ const createUser = async (inquriData: InquiryData): Promise<User> => {
       Authorization: `Bearer ${API_KEY}`,
     },
   });
-  return data.data as User;
+  return data as User;
 };
 
 export {

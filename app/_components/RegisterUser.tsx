@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { createUser } from "../_utils/GlobalApi";
 
 interface UserData {
@@ -11,11 +11,21 @@ interface UserData {
 
 const RegisterUser: React.FC = () => {
   const [userData, setUserData] = useState<UserData>({
-    email: "example2@example.com",
-    username: "example2User",
-    password: "example2Password123",
+    email: "",
+    username: "",
+    password: "",
     role: 1,
   });
+
+  // useEffect kullanarak başlangıç verilerini bir kez ayarla
+  useEffect(() => {
+    setUserData({
+      email: "example2@example.com",
+      username: "example2User",
+      password: "example2Password123",
+      role: 1,
+    });
+  }, []); // Boş bağımlılık dizisi sayesinde sadece bir kere çalışır.
 
   const handleSubmit = async (): Promise<void> => {
     try {
